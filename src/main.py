@@ -33,7 +33,11 @@ if __name__ == '__main__':
             # read an image
             a = imageio.imread(filepath)
             a = np.array(a,dtype=np.int32)[:,:,0:3]
-            a = np.resize(a, (256,256,3))
+            mincut = Mincut(a,config.OUT_DIM[0],config.OUT_DIM[1])
+            result = mincut.patch()
+            rst = result.astype('uint8')
+            # write output image
+            imageio.imwrite(os.path.join(config.OUTPUT_DIR,"out-{}.jpeg".format(os.path.splitext(filename)[0])),rst)
     except FileNotFoundError:
         print("Input folder empty. Please populate the folder with images")
         print(str(traceback.format_exc()))
