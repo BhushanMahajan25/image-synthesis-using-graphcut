@@ -5,3 +5,4 @@ INPUT_DIR = os.path.join(ROOT_DIR, "input")
 OUTPUT_DIR = os.path.join(ROOT_DIR, "output")
 INTERMEDIATE_DIR = os.path.join(ROOT_DIR, "intermediate")
 OUT_DIM = (512,512)
+RESIZE_SCALE = 80

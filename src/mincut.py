@@ -4,7 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from copy import deepcopy
-from ED import edmonds_karp
+from edmondsKarp import edmonds_karp
 
 fig_index = 1
 
@@ -283,10 +283,10 @@ class Mincut(object):
     
         mincut_val, partition = nx.minimum_cut(G,0,1,flow_func=edmonds_karp)
 
-        left, right = partition
-        cut_set = set()
-        for u, nbrs in ((n, G[n]) for n in left):
-            cut_set.update((u, v) for v in nbrs if v in right)
+        # left, right = partition
+        # cut_set = set()
+        # for u, nbrs in ((n, G[n]) for n in left):
+        #     cut_set.update((u, v) for v in nbrs if v in right)
         # print(sorted(cut_set))
         # temp_graph=nx.DiGraph()
         # temp_graph.add_edges_from(cut_set)
