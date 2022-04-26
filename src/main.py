@@ -2,6 +2,7 @@ import sys
 import imageio
 import os
 import config
+import cv2
 import traceback
 import numpy as np
 
@@ -31,8 +32,13 @@ if __name__ == '__main__':
         else:
             filepath = os.path.join(config.INPUT_DIR, filename)
             # read an image
-            a = imageio.imread(filepath)
-            a = np.array(a,dtype=np.int32)[:,:,0:3]
+            img = imageio.imread(filepath)
+            scale_percent = config.RESIZE_SCALE # percent of original size
+            width = int(img.shape[1] * scale_percent / 100)
+            height = int(img.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+            a = np.array(img,dtype=np.int32)[:,:,0:3]
             mincut = Mincut(a,config.OUT_DIM[0],config.OUT_DIM[1])
             result = mincut.patch()
             rst = result.astype('uint8')
