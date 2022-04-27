@@ -1,3 +1,5 @@
+import config
+import os
 import random
 import numpy as np
 import networkx as nx
@@ -282,16 +284,26 @@ class Mincut(object):
                         G.add_edge(0,matrix2D[x][y],capacity=1<<20)
     
         mincut_val, partition = nx.minimum_cut(G,0,1,flow_func=edmonds_karp)
+        # mincut_val, partition = nx.minimum_cut(G,0,1)
 
-        # left, right = partition
-        # cut_set = set()
-        # for u, nbrs in ((n, G[n]) for n in left):
-        #     cut_set.update((u, v) for v in nbrs if v in right)
+        left, right = partition
+        cut_set = set()
+        for u, nbrs in ((n, G[n]) for n in left):
+            cut_set.update((u, v) for v in nbrs if v in right)
         # print(sorted(cut_set))
         # temp_graph=nx.DiGraph()
         # temp_graph.add_edges_from(cut_set)
         # nx.draw_networkx(temp_graph)
         # plt.show() 
+        file = open(os.path.join(config.INTERMEDIATE_DIR ,"intermediate_cutset.txt"),"a")
+        file.write(str(cut_set))
+        file.write("\n")
+        file.close()
+        adj_matrix = nx.adjacency_matrix(G)
+        file = open(os.path.join(config.INTERMEDIATE_DIR, "intermediate_adjacency_matrix.txt"),"a")
+        file.write(str(adj_matrix))
+        file.write("\n")
+        file.close()
 
         # # saving intermediate op in file
 
