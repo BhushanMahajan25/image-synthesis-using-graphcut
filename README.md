@@ -25,9 +25,31 @@ The program asks user to select the image for graphcut-synthesis from menu. Afte
 The output image will be generated inside `output` directory. The dimensions of this output image can be specified in `src/config.py`
 
 ## Implementation 
-### Libraries Used
-* imageio -> To perform read and write operations on images.
-* cv2 -> To perform scaling operations.
-* numpy -> To effectively deal with 2d and 3d matrices.
-* matplotlib -> To plot graphs.
-* networkx -> To create graphs from the overlapped pixels.
+### Libraries used
+* `imageio`==2.18.0: To perform read and write operations on images.
+* `cv2`==4.5.5: To perform scaling operations.
+* `numpy`==1.22.3: To effectively deal with 2d and 3d matrices.
+* `matplotlib`==3.5.1: To plot graphs.
+* `networkx`==2.8: To create graphs from the overlapped pixels.
+### Development environment
+* System: Apple Macbook Air (Apple Silicon-M1)
+* Programming language: Python==3.9.8
+* Text editor: MS-VS Code
+### Project directories
+* input: Directory of input images. User sees these input images on command line menu.
+* intermediate: Directory containing images of intermediate states of graph changes, intermediate snapshots of adjacency matrices.
+* output: Directory in which final synthesized image is stored.
+* src: Directory containing python source code.
+* screenshots: Directory containing command-line outputs as well as intermediate outputs
+* requrements.txt: File containing dependencies required for the file
+  
+## Graphcut description
+### Ford-Fulkerson algorithm
+* The algorithm depends on 2 main concepts:
+    1. Residual network
+    2. Augmenting paths
+* The graph is created from the original network with same set of vertices and one or two edges for each edge in original network.
+* Augmenting path which is a path from source to sink is chosen randomely in residual network.
+* The resultant flow is then appended to the current flow, and new residual network is generated.
+* This process is repeated until there is no augmenting path is left.
+* The running time of the Ford-Fulkerson Algorithm is $O(∣E∣⋅f)$ where $|E|$ is the number of edges and $f$ is the maximum flow.
