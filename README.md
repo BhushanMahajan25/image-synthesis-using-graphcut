@@ -52,4 +52,21 @@ The output image will be generated inside `output` directory. The dimensions of 
 * Augmenting path which is a path from source to sink is chosen randomely in residual network.
 * The resultant flow is then appended to the current flow, and new residual network is generated.
 * This process is repeated until there is no augmenting path is left.
-* The running time of the Ford-Fulkerson Algorithm is $O(∣E∣⋅f)$ where $|E|$ is the number of edges and $f$ is the maximum flow.
+* The running time of the Ford-Fulkerson Algorithm is $O(∣E∣ \cdot f)$ where $|E|$ is the number of edges and $f$ is the maximum flow.
+
+## Edmonds-Karp algorithm
+* Edmonds-Karp is identical to Ford-Fulkerson except for one very important trait. The search order of augmenting paths is well defined.
+* Edmonds-Karp differs from Ford-Fulkerson in that it chooses the next augmenting path using breadth-first search (bfs). So, if there are multiple augmenting paths to choose from, Edmonds-Karp will be sure to choose the shortest augmenting path from the source to the sink.
+* A residual network is generated from the given graph in which both the networks have same set of vertices.
+* After finding this augmenting path, the cost of the path is added to the reverse edges and a new residual graph is created.
+This process continues until we maximize the flow through the network i.e no augmenting paths exist.
+* Edmonds-Karp improves the runtime of Ford-Fulkerson, which is $O(|E| \cdot f^{*})$ to $O(|V| \cdot |E|^{2})$ where |E| is the number of edges and |V| is the number of vertices. This improvement is important because it makes the runtime of Edmonds-Karp independent of the maximum flow of the network, $f^{*}$.
+
+## Converting problem/solution
+For this project, I have used  `networkx` library to generate the graph for overlap region between two patches.
+### Intermediate steps
+The below graphs indicate the edges between the nodes that ultimately sum up to the cost of minimum cut as per the intermediate steps. Edmonds-Karp algorithm is implemented on the overlapped seams which returns two set of nodes. One being the left side of the image and the other being right one. The edges plotted below represent the edges that have been cut and sum up to min cut while applying the algorithm.
+
+% upload images
+
+There were around 60 intermediate graphs generated in the overall process out of which I have picked the above intermediate steps which clearly indicate a trend while generating the min-cut. I believe the initial density of the graph can be associated to the inclusion of pixels from both the images as we move forward. In the process, more and more pixels from the right hand side which is associated to the sink contribute to the seam.
