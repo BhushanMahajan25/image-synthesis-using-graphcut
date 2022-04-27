@@ -295,7 +295,7 @@ class Mincut(object):
         # temp_graph.add_edges_from(cut_set)
         # nx.draw_networkx(temp_graph)
         # plt.show() 
-        file = open(os.path.join(config.INTERMEDIATE_DIR ,"intermediate_cutset.txt"),"a")
+        file = open(os.path.join(config.INTERMEDIATE_DIR ,"intermediate_vector_cutset.txt"),"a")
         file.write(str(cut_set))
         file.write("\n")
         file.close()

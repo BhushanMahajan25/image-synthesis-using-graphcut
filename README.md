@@ -24,6 +24,15 @@ The program asks user to select the image for graphcut-synthesis from menu. Afte
 ### How to interpret the output : 
 The output image will be generated inside `output` directory. The dimensions of this output image can be specified in `src/config.py`
 
+## Project output
+1. input: `strawberries.gif` -> output: `out-strawberries.gif`
+
+![input-1](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/input/strawberries.gif?raw=true) | ![output-1](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/output/out-strawberries.jpeg?raw=true)
+
+2. input: `akeyboard_small.gif` -> output: `out-akeyboard_small.gif`
+
+![input-2](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/input/akeyboard_small.gif?raw=true) | ![output-2](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/output/out-akeyboard_small.jpeg?raw=true)
+
 ## Implementation 
 ### Libraries used
 * `imageio`==2.18.0: To perform read and write operations on images.
@@ -66,7 +75,21 @@ This process continues until we maximize the flow through the network i.e no aug
 For this project, I have used  `networkx` library to generate the graph for overlap region between two patches.
 ### Intermediate steps
 The below graphs indicate the edges between the nodes that ultimately sum up to the cost of minimum cut as per the intermediate steps. Edmonds-Karp algorithm is implemented on the overlapped seams which returns two set of nodes. One being the left side of the image and the other being right one. The edges plotted below represent the edges that have been cut and sum up to min cut while applying the algorithm.
-
-% upload images
+ 
+![Figure-1](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_1.png?raw=true)
+![Figure-2](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_2.png?raw=true)
+![Figure-3](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_3.png?raw=true)
+![Figure-4](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_4.png?raw=true)
+![Figure-5](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_5.png?raw=true)
+![Figure-6](https://github.com/BhushanMahajan25/image-synthesis-using-graphcut/blob/main/intermediate/Figure_6.png?raw=true)
 
 There were around 60 intermediate graphs generated in the overall process out of which I have picked the above intermediate steps which clearly indicate a trend while generating the min-cut. I believe the initial density of the graph can be associated to the inclusion of pixels from both the images as we move forward. In the process, more and more pixels from the right hand side which is associated to the sink contribute to the seam.
+
+## Generating the correct graph
+The adjacency matrix has been stored in `intermediate/intermediate_adjacency_matrix.txt`
+
+## Converting solution to image cut
+The vector of cuts is stored in the file named `intermediate/intermediate_vector_cutset.txt`
+
+## Compositing new image into old one
+The above image of strawberry_new.jpg and keyboard.jpg is the resultant file generated from this project.
