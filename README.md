@@ -4,6 +4,8 @@
 
 The goal of the assignment is to synthesize an image with significantly larger dimensions from a sample image using the algorithm discussed in the paper by - Vivek Kwatra, Arno Schödl, Irfan Essa, Greg Turk, and Aaron Bobick. 2003. "Graphcut textures: image and video synthesis using graph cuts". <i>ACM Trans. Graph.</i> 22, 3 (July 2003), 277–286. DOI:https://doi.org/10.1145/882262.882264
 
+The patches were placed using the entire patch matching strategy. Using this strategy, the patches are first matched with the pre-existing patches and the best fit patch is picked. This patch picking works on probability function.
+
 High-level process flow is explained below:
 
 * Create an empty image for final output. The output image size can be specified in `src/config.py`. 
@@ -92,4 +94,17 @@ The adjacency matrix has been stored in `intermediate/intermediate_adjacency_mat
 The vector of cuts is stored in the file named `intermediate/intermediate_vector_cutset.txt`
 
 ## Compositing new image into old one
-The above image of strawberry_new.jpg and keyboard.jpg is the resultant file generated from this project.
+The above image of out_strawberry.jpeg and akeyboard_small.jpeg is the resultant file generated from this project.
+
+## References
+- https://www.csee.umbc.edu/~adamb/641/resources/GraphcutTextures.pdf
+- https://www.cc.gatech.edu/cpl/projects/graphcuttextures/spring06/cos226/lectures/maxflow.pdf
+- https://stackoverflow.com/questions/4482986/how-can-i-find-the-minimum-cut-on-a-graph-using-a-maximum-flow-algorithm
+- https://vision.cs.uwaterloo.ca/code/
+- https://github.com/networkx/networkx/blob/main/networkx/algorithms/flow/utils.py
+- https://github.com/ErictheSam/Graphcut
+- https://github.com/networkx/networkx/blob/main/networkx/algorithms/flow/edmondskarp.py
+- https://github.com/textureguy/KUVA
+- https://networkx.org/documentation/stable/reference/generated/networkx.linalg.graphmatrix.adjacency_matrix.html
+- https://networkx.org/documentation/stable/reference/introduction.html
+- https://www.cs.princeton.edu/courses/archive/
